@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+  <h2 id="cameraTitle">{% block title %}Welcome to the App{% endblock title %}</h2>
+                                          <!-- remind me to change title to "Livestreaming feed to server..." -->
+
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI" crossorigin="anonymous"></script>
+{% endblock header %}
+
+{% block content %}
+  <p id="messageID">For Demo purposes only.</p>
+  <div id="videoContainer" style="margin-top: 20px;">
+    <img id="videoStream" class="feed" src="" alt="Video Stream" style="display: none;">
+    <div id="videoLoader" class="loader" style="display: none;"></div>
+  </div>
+  <div>
+    <button id="toggleBtn" class="button" style="display: block;" onclick="controlFeed()">Start</button>
+  </div>
+  <div id="translationContainer">
+    <p id="translation" style="display: none;">Pseudo Translated</p>
+                                          <!-- remember to make the sockets work so we can have live feed and translation feed -->
+  </div>
+{% endblock content %}
+
+{% block scripts %}
+  <script>
+    const message = document.getElementById('messageID')
+    const video = document.getElementById('videoStream');
+    const loading = document.getElementById('videoLoader')
+    const translation = document.getElementById('translation')
+    const toggle = document.getElementById('toggleBtn')
+
+    let isStreaming = false
+
+    const socket = io()
+
+
+    function customMessage(x){
+      if (x === "load") {
+        message.innerHTML = "Loading camera..."
+      } else if (x === "running") {
+        message.innerHTML = "Running Camera..."
+      } else if (x === "stop") {
+        message.innerHTML = "Camera Closed."
+      } else {
+        message.innerHTML = "Feed interrupted."
+      }
+    }
+
+    function controlFeed(){
+
+      if (isStreaming) {
+        toggle.innerHTML = "Start"
+
+        video.src = ""
+        video.style.display = "none"
+        translation.style.display = "none"
+        customMessage("stop")
+
+      } else {
+        toggle.style.display = "none"
+      
+        loading.style.display = "block"
+        customMessage("load")
+        video.src = "/runCamera"
+        video.style.display = "block"
+
+        video.onload = () =>{
+          toggle.style.display = "block"
+          toggle.innerHTML = "Stop"
+
+          loading.style.display = "none"
+          translation.style.display = "block"
+          customMessage("running")
+        }
+      }
+      isStreaming = !(isStreaming)
+    }
+  </script>
+{% endblock scripts %}

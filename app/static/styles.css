@@ -1,0 +1,173 @@
+/* Sidebar Styles */
+.sidebar {
+    height: 100%; /* Full-height */
+    width: 0; /* 0 width - starting collapsed */
+    position: fixed; /* Fixed position for overlay effect */
+    z-index: 10; /* Stay on top of the content */
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black background */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+    padding-top: 60px; /* Place content 60px from the top */
+}
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+#menuButton {
+  padding: 10px 15px;
+}
+
+.mainHeader {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+}
+
+.mainLayout {
+    padding: 20px;
+    margin: 0 auto;
+}
+
+#homeContainerA {
+  font-family: 'Courier New';
+  font-size: 20px;
+}
+
+#homeContainerB {
+  font-family: 'Courier New';
+  font-size: 18px;
+}
+
+#aboutContainer {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 18px;
+  white-space: pre-line;
+}
+
+.loader {
+border: 16px solid #f3f3f3; /* Light grey */
+border-top: 16px solid #3498db; /* Blue */
+border-radius: 50%;
+width: 120px;
+height: 120px;
+margin: auto;
+animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.feed {
+  margin: auto;
+  width: 50%;
+}
+
+.button {
+  margin: auto;
+}
+
+
+
+body{
+  background-color: #f0f0f0;
+}
+
+
+#translationContainer {
+  background-color: #e8e8e8;
+  padding: 10px 15px;
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+#translation {
+  font-family: 'Courier New';
+  font-size: 20px;
+}
+
+
+
+
+
+
+
+/* Camera - History Panel CSS*/
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 280px;
+  background-color: #1e1e1e;
+  color: white;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.4);
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-panel.collapsed {
+  transform: translateX(250px);
+}
+
+.side-toggle {
+  position: absolute;
+  left: -32px;
+  top: 20px;
+  background-color: #1e1e1e;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 8px 6px;
+  box-shadow: -1px 0 5px rgba(0,0,0,0.3);
+  transition: background-color 0.3s;
+}
+.side-toggle:hover {
+  background-color: #333;
+}
+
+.side-content {
+  padding: 20px;
+  overflow-y: auto;
+  margin-top: 50px;
+}
+
+#cameraMain {
+  transition: margin-left .5s;
+  padding: 20px;
+}
